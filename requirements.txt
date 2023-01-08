@@ -4,3 +4,5 @@ torch
 scikit-learn
 transformers
 path
+pyvista
+pyvistaqt
