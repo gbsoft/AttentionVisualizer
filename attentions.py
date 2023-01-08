@@ -3,6 +3,8 @@ import numpy as np
 import torch
 from path import Path
 import pickle as pkl
+import hashlib
+from visual3d import show_point_cloud
 
 ###################
 #--- for PLOT ---
@@ -39,7 +41,7 @@ hello, how are you ?
 text=TEXTS[1]
 
 #--- others ---
-fp_cache=Path('data/cache.pkl')
+fp_cache=Path(f'cache/{hashlib.md5((name+":"+text).encode()).hexdigest()}.pkl')
 ###################
 
 
@@ -85,7 +87,7 @@ def save(feats):
     np.savetxt('/tmp/point_cloud.txt', feats)
 
 def cache_exists():
-    return Path('data/cache.pkl').exists()
+    return fp_cache.exists()
 
 def load_cache():
     with open(fp_cache, 'rb') as fin:
@@ -250,10 +252,11 @@ if __name__=='__main__':
         print(i, ':', vocabs[token_id])
         labels.append(vocabs[token_id])
 
-    # arr = gen_4d_attns_arr_of_one_head_for_all_layers()
-    # print(arr.shape)
+    arr = gen_4d_attns_arr_of_one_head_for_all_layers()
+    print(arr.shape)
+    show_point_cloud(arr, 0)
 
-    for i in range(1):
+    for i in range(0):
         # show_img_all_heads_of_one_layer(i)
 
         # show_img_one_head_of_all_layer(i)
