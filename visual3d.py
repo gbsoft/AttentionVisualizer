@@ -65,7 +65,7 @@ def show_dynamic_point_cloud(points):
     pv.Plotter().show(window_size=[1,1])
 
 # Overall
-def show_point_cloud(points, dynamic=0):
+def show_points(points, dynamic=0):
     if dynamic:
         show_dynamic_point_cloud(points)
     else:
@@ -73,4 +73,4 @@ def show_point_cloud(points, dynamic=0):
     
 if __name__=='__main__':
     points = np.random.random((100, 4)) * 10
-    show_point_cloud(points, 0)
+    show_points(points, 0)
